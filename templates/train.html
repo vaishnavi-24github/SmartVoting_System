@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Model - Smart Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Smart Voting System</h1>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.register') }}">Register</a></li>
+                <li><a href="{{ url_for('main.vote') }}">Vote</a></li>
+                <li><a href="{{ url_for('main.results') }}">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="training-section">
+            <h2>Train Face Recognition Model</h2>
+            <div class="training-info">
+                <p>This will train the face recognition model using all registered voter images.</p>
+                <ul>
+                    <li>All images from the dataset/uploads directory will be used</li>
+                    <li>Each image should contain a clear face</li>
+                    <li>The model will be saved as face_recognizer.xml</li>
+                    <li>Training may take a few minutes depending on the number of images</li>
+                </ul>
+            </div>
+            <form method="POST" action="{{ url_for('main.train_model') }}" class="training-form">
+                <button type="submit" class="train-button">Start Training</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Smart Voting System. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 

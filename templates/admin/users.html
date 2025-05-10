@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users - Smart Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .users-table th,
+        .users-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .users-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .users-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .admin-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-header h2 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        
+        .user-count {
+            background-color: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Smart Voting System</h1>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.register') }}">Register</a></li>
+                <li><a href="{{ url_for('main.vote') }}">Vote</a></li>
+                <li><a href="{{ url_for('main.results') }}">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="admin-section">
+            <div class="admin-header">
+                <h2>Registered Users</h2>
+                <span class="user-count">Total Users: {{ users|length }}</span>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                            <button class="close-flash" onclick="this.parentElement.remove()">&times;</button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Voter ID</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>Country</th>
+                        <th>Region</th>
+                        <th>Registration Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.voter_id }}</td>
+                        <td>{{ user.phone_number }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.gender }}</td>
+                        <td>{{ user.country }}</td>
+                        <td>{{ user.region }}</td>
+                        <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Smart Voting System. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

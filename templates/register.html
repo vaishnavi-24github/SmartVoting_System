@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Smart Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Smart Voting System</h1>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.register') }}">Register</a></li>
+                <li><a href="{{ url_for('main.vote') }}">Vote</a></li>
+                <li><a href="{{ url_for('main.results') }}">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="registration-section">
+            <h2>Register to Vote</h2>
+            
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                            <button class="close-flash" onclick="this.parentElement.remove()">&times;</button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('main.register') }}" class="registration-form" id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="voter_id">Voter ID</label>
+                    <input type="text" id="voter_id" name="voter_id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="China">China</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="region">Region/State</label>
+                    <select id="region" name="region" required>
+                        <option value="">Select Region/State</option>
+                        <!-- States for India -->
+                        <option value="Andhra Pradesh" class="india">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh" class="india">Arunachal Pradesh</option>
+                        <option value="Assam" class="india">Assam</option>
+                        <option value="Bihar" class="india">Bihar</option>
+                        <option value="Chhattisgarh" class="india">Chhattisgarh</option>
+                        <option value="Goa" class="india">Goa</option>
+                        <option value="Gujarat" class="india">Gujarat</option>
+                        <option value="Haryana" class="india">Haryana</option>
+                        <option value="Himachal Pradesh" class="india">Himachal Pradesh</option>
+                        <option value="Jharkhand" class="india">Jharkhand</option>
+                        <option value="Karnataka" class="india">Karnataka</option>
+                        <option value="Kerala" class="india">Kerala</option>
+                        <option value="Madhya Pradesh" class="india">Madhya Pradesh</option>
+                        <option value="Maharashtra" class="india">Maharashtra</option>
+                        <option value="Manipur" class="india">Manipur</option>
+                        <option value="Meghalaya" class="india">Meghalaya</option>
+                        <option value="Mizoram" class="india">Mizoram</option>
+                        <option value="Nagaland" class="india">Nagaland</option>
+                        <option value="Odisha" class="india">Odisha</option>
+                        <option value="Punjab" class="india">Punjab</option>
+                        <option value="Rajasthan" class="india">Rajasthan</option>
+                        <option value="Sikkim" class="india">Sikkim</option>
+                        <option value="Tamil Nadu" class="india">Tamil Nadu</option>
+                        <option value="Telangana" class="india">Telangana</option>
+                        <option value="Tripura" class="india">Tripura</option>
+                        <option value="Uttar Pradesh" class="india">Uttar Pradesh</option>
+                        <option value="Uttarakhand" class="india">Uttarakhand</option>
+                        <option value="West Bengal" class="india">West Bengal</option>
+                        <!-- States for USA -->
+                        <option value="Alabama" class="usa">Alabama</option>
+                        <option value="Alaska" class="usa">Alaska</option>
+                        <option value="Arizona" class="usa">Arizona</option>
+                        <option value="Arkansas" class="usa">Arkansas</option>
+                        <option value="California" class="usa">California</option>
+                        <option value="Colorado" class="usa">Colorado</option>
+                        <option value="Connecticut" class="usa">Connecticut</option>
+                        <option value="Delaware" class="usa">Delaware</option>
+                        <option value="Florida" class="usa">Florida</option>
+                        <option value="Georgia" class="usa">Georgia</option>
+                        <option value="Hawaii" class="usa">Hawaii</option>
+                        <option value="Idaho" class="usa">Idaho</option>
+                        <option value="Illinois" class="usa">Illinois</option>
+                        <option value="Indiana" class="usa">Indiana</option>
+                        <option value="Iowa" class="usa">Iowa</option>
+                        <option value="Kansas" class="usa">Kansas</option>
+                        <option value="Kentucky" class="usa">Kentucky</option>
+                        <option value="Louisiana" class="usa">Louisiana</option>
+                        <option value="Maine" class="usa">Maine</option>
+                        <option value="Maryland" class="usa">Maryland</option>
+                        <option value="Massachusetts" class="usa">Massachusetts</option>
+                        <option value="Michigan" class="usa">Michigan</option>
+                        <option value="Minnesota" class="usa">Minnesota</option>
+                        <option value="Mississippi" class="usa">Mississippi</option>
+                        <option value="Missouri" class="usa">Missouri</option>
+                        <option value="Montana" class="usa">Montana</option>
+                        <option value="Nebraska" class="usa">Nebraska</option>
+                        <option value="Nevada" class="usa">Nevada</option>
+                        <option value="New Hampshire" class="usa">New Hampshire</option>
+                        <option value="New Jersey" class="usa">New Jersey</option>
+                        <option value="New Mexico" class="usa">New Mexico</option>
+                        <option value="New York" class="usa">New York</option>
+                        <option value="North Carolina" class="usa">North Carolina</option>
+                        <option value="North Dakota" class="usa">North Dakota</option>
+                        <option value="Ohio" class="usa">Ohio</option>
+                        <option value="Oklahoma" class="usa">Oklahoma</option>
+                        <option value="Oregon" class="usa">Oregon</option>
+                        <option value="Pennsylvania" class="usa">Pennsylvania</option>
+                        <option value="Rhode Island" class="usa">Rhode Island</option>
+                        <option value="South Carolina" class="usa">South Carolina</option>
+                        <option value="South Dakota" class="usa">South Dakota</option>
+                        <option value="Tennessee" class="usa">Tennessee</option>
+                        <option value="Texas" class="usa">Texas</option>
+                        <option value="Utah" class="usa">Utah</option>
+                        <option value="Vermont" class="usa">Vermont</option>
+                        <option value="Virginia" class="usa">Virginia</option>
+                        <option value="Washington" class="usa">Washington</option>
+                        <option value="West Virginia" class="usa">West Virginia</option>
+                        <option value="Wisconsin" class="usa">Wisconsin</option>
+                        <option value="Wyoming" class="usa">Wyoming</option>
+                        <!-- Other countries -->
+                        <option value="Other" class="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Photo</label>
+                    <div class="webcam-container">
+                        <video id="webcam" autoplay playsinline></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                        <button type="button" id="captureBtn">Capture Photo</button>
+                    </div>
+                    <input type="hidden" name="imageData" id="imageData">
+                </div>
+
+                <button type="submit" class="submit-button" disabled>Register</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Smart Voting System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to show notifications
+        function showNotification(message, type) {
+            console.log('Showing notification:', message, type);
+            
+            const notification = document.createElement('div');
+            notification.className = `flash-message ${type}`;
+            notification.innerHTML = `
+                ${message}
+                <button class="close-flash" onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            const section = document.querySelector('.registration-section');
+            section.insertBefore(notification, section.firstChild);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Initialize webcam
+        async function initWebcam() {
+            const video = document.getElementById('webcam');
+            
+            try {
+                // Firefox-specific camera initialization
+                const constraints = {
+                    video: {
+                        width: { min: 640, ideal: 1280, max: 1920 },
+                        height: { min: 480, ideal: 720, max: 1080 },
+                        facingMode: { ideal: "user" },
+                        frameRate: { ideal: 30 }
+                    }
+                };
+
+                console.log('Requesting camera access...');
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                console.log('Camera access granted');
+
+                // Set the video source
+                video.srcObject = stream;
+                
+                // Firefox-specific video setup
+                video.setAttribute('playsinline', true);
+                video.setAttribute('autoplay', true);
+                
+                // Wait for video to be ready
+                await new Promise((resolve) => {
+                    video.onloadedmetadata = () => {
+                        video.play()
+                            .then(() => {
+                                console.log('Video playback started');
+                                resolve();
+                            })
+                            .catch(error => {
+                                console.error('Error playing video:', error);
+                                showNotification('Error starting video. Please try again.', 'error');
+                            });
+                    };
+                });
+
+                console.log('Webcam initialized successfully');
+                showNotification('Camera access granted successfully!', 'success');
+
+            } catch (error) {
+                console.error('Error accessing webcam:', error);
+                let errorMessage = 'Error accessing webcam. ';
+                
+                if (error.name === 'NotAllowedError') {
+                    errorMessage += 'Please allow camera access when prompted. Click the camera icon in the address bar to allow access.';
+                } else if (error.name === 'NotFoundError') {
+                    errorMessage += 'No camera found. Please connect a camera and try again.';
+                } else if (error.name === 'NotReadableError') {
+                    errorMessage += 'Camera is in use by another application. Please close other applications using the camera.';
+                } else if (error.name === 'OverconstrainedError') {
+                    errorMessage += 'Camera does not meet requirements. Please try a different camera.';
+                } else {
+                    errorMessage += 'Please make sure you have granted camera permissions.';
+                }
+                
+                showNotification(errorMessage, 'error');
+            }
+        }
+
+        // Capture photo
+        document.getElementById('captureBtn').addEventListener('click', function() {
+            console.log('Capture button clicked');
+            const video = document.getElementById('webcam');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            
+            if (!video.srcObject) {
+                showNotification('Camera not initialized. Please refresh the page and try again.', 'error');
+                return;
+            }
+            
+            try {
+                // Set canvas dimensions to match video
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                
+                // Draw the current video frame to canvas
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                
+                // Get the image data
+                const imageData = canvas.toDataURL('image/jpeg', 0.8);
+                console.log('Image captured, length:', imageData.length);
+                
+                // Store the image data
+                document.getElementById('imageData').value = imageData;
+                
+                // Enable submit button
+                const submitButton = document.querySelector('.submit-button');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    console.log('Submit button enabled');
+                }
+                
+                showNotification('Photo captured successfully!', 'success');
+                console.log('Photo captured successfully');
+            } catch (error) {
+                console.error('Error capturing photo:', error);
+                showNotification('Error capturing photo. Please try again.', 'error');
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Form submission started');
+            
+            const formData = new FormData(this);
+            const imageData = formData.get('imageData');
+            
+            if (!imageData) {
+                showNotification('Please capture your photo first', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                console.log('Server response:', data);
+                
+                if (data.success) {
+                    showNotification(data.message, 'success');
+                    if (data.redirect) {
+                        setTimeout(() => {
+                            window.location.href = data.redirect;
+                        }, 2000);
+                    }
+                } else {
+                    showNotification(data.message, 'error');
+                }
+
+                if (data.html) {
+                    document.querySelector('.voting-section').innerHTML = data.html;
+                    initWebcam();
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                showNotification('An error occurred while submitting the form', 'error');
+            }
+        });
+
+        // Add event listener for country change
+        document.getElementById('country').addEventListener('change', function() {
+            const country = this.value;
+            const regionSelect = document.getElementById('region');
+            const options = regionSelect.getElementsByTagName('option');
+            
+            // Hide all options first
+            for (let option of options) {
+                option.style.display = 'none';
+            }
+            
+            // Show relevant options based on country
+            for (let option of options) {
+                if (option.value === '') {
+                    option.style.display = ''; // Always show the default option
+                } else if (country === 'India' && option.classList.contains('india')) {
+                    option.style.display = '';
+                } else if (country === 'United States' && option.classList.contains('usa')) {
+                    option.style.display = '';
+                } else if (country === 'Other' && option.classList.contains('other')) {
+                    option.style.display = '';
+                }
+            }
+            
+            // Reset region selection
+            regionSelect.value = '';
+        });
+
+        // Initialize webcam when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, initializing webcam...');
+            // Add a small delay to ensure the page is fully loaded
+            setTimeout(initWebcam, 500);
+            
+            // Trigger country change event to set initial state
+            document.getElementById('country').dispatchEvent(new Event('change'));
+        });
+
+        document.querySelector('.submit-button').disabled = false;
+    </script>
+</body>
+</html> 

@@ -1,0 +1,609 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #2c3e50;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #3498db;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Registration Form */
+.registration-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #357abd;
+}
+
+button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Webcam Styles */
+.webcam-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#webcam {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+#captureBtn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#captureBtn:hover {
+    background-color: #218838;
+}
+
+#canvas {
+    display: none;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+    background-color: #2ecc71;
+}
+
+.notification.error {
+    background-color: #e74c3c;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Form Elements */
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.form-group input[type="tel"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Error states */
+.form-group input:invalid,
+.form-group select:invalid {
+    border-color: #e74c3c;
+}
+
+.form-group input:invalid:focus,
+.form-group select:invalid:focus {
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+/* Success states */
+.form-group input:valid,
+.form-group select:valid {
+    border-color: #2ecc71;
+}
+
+.form-group input:valid:focus,
+.form-group select:valid:focus {
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+}
+
+/* Training Section */
+.training-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.training-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.training-info {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.training-info p {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.training-info ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.training-info ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #666;
+}
+
+.training-info ul li:before {
+    content: "•";
+    color: #3498db;
+    position: absolute;
+    left: 0;
+}
+
+.training-form {
+    text-align: center;
+}
+
+.train-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.train-button:hover {
+    background-color: #2980b9;
+}
+
+.train-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Voting Section */
+.voting-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.voting-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.voter-info {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.face-verification {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.face-verification h3 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.candidates-section {
+    margin-bottom: 2rem;
+}
+
+.candidates-section h3 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.candidates-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.candidate-card {
+    position: relative;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.candidate-card:hover {
+    border-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.candidate-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.candidate-card label {
+    display: block;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.candidate-info h4 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.candidate-info p {
+    margin: 0.5rem 0 0;
+    color: #666;
+}
+
+.candidate-card input[type="radio"]:checked + label {
+    background-color: #e8f4fc;
+}
+
+.candidate-card input[type="radio"]:checked + label .candidate-info h4 {
+    color: #3498db;
+}
+
+.submit-vote {
+    width: 100%;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit-vote:hover:not(:disabled) {
+    background-color: #27ae60;
+}
+
+.submit-vote:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.verification-section {
+    text-align: center;
+}
+
+.verify-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.verify-button:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.verify-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Flash Messages */
+.flash-message {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    position: relative;
+    animation: slideIn 0.5s ease-out;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.close-flash {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.close-flash:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Results Page Enhancements */
+.results-section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 32px 24px 40px 24px;
+    text-align: center;
+}
+
+.results-section h2 {
+    color: #2c3e50;
+    margin-bottom: 32px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.results-table th, .results-table td {
+    padding: 14px 18px;
+    text-align: center;
+}
+
+.results-table th {
+    background: #2c3e50;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.results-table tr:nth-child(even) {
+    background: #f0f4f8;
+}
+
+.results-table tr:hover {
+    background: #e3eaf2;
+    transition: background 0.2s;
+}
+
+.results-table td {
+    font-size: 1.05rem;
+    color: #333;
+}
+
+.chart-container {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    padding: 24px 12px 12px 12px;
+    margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+    .results-section {
+        padding: 16px 4px 24px 4px;
+    }
+    .results-table th, .results-table td {
+        padding: 8px 4px;
+        font-size: 0.95rem;
+    }
+    .chart-container {
+        padding: 8px 2px 2px 2px;
+    }
+} 

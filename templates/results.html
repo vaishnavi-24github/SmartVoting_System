@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results - Smart Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Smart Voting System</h1>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.register') }}">Register</a></li>
+                <li><a href="{{ url_for('main.vote') }}">Vote</a></li>
+                <li><a href="{{ url_for('main.results') }}">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="results-section">
+            <h2>Election Results</h2>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Party</th>
+                        <th>Votes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in results %}
+                    <tr>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.party }}</td>
+                        <td>{{ row.votes }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="chart-container" style="max-width: 600px; margin: 40px auto;">
+                <canvas id="resultsChart"></canvas>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Smart Voting System. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ chart_labels|tojson }},
+                    datasets: [{
+                        label: 'Votes',
+                        data: {{ chart_votes|tojson }},
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Vote Counts by Candidate'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
