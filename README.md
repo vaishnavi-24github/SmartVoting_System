@@ -46,7 +46,7 @@ Clone this repository:
 ```bash
 git clone https://github.com/vaishnavi-24github/Smart_Voting_System.git
 cd Smart_Voting_System
-**Install required Python packages**
 
 
 pip install -r requirements.txt
+
